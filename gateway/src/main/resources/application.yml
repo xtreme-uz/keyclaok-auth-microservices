@@ -8,11 +8,18 @@ spring:
       resourceserver:
         opaquetoken:
           introspection-uri: http://localhost:8080/realms/master/protocol/openid-connect/token/introspect
-          client-id: gateway-client
-          client-secret: 73iMj0tfU4fY8jNQ9sWKCHXIe4pNgsKP
+          client-id: web
+          client-secret: UM2xKGxfvlV1wRMooTpLYRxlSLyjVgtP
 
   cloud:
     gateway:
+      routes:
+        - id: users
+          uri: http://localhost:8082
+          predicates:
+            - Path=/users/**
+          filters:
+            - TokenRelay=
       globalcors:
         cors-configurations:
           '[/**]':
