@@ -1,7 +1,9 @@
 plugins {
-	id 'org.springframework.boot' version '2.7.4'
-	id 'io.spring.dependency-management' version '1.0.14.RELEASE'
+	id 'org.springframework.boot'
+	id 'io.spring.dependency-management'
 	id 'java'
+	id 'java-library'
+	id 'org.jetbrains.kotlin.jvm'
 }
 
 group = 'uz.xtreme'
@@ -19,10 +21,17 @@ repositories {
 }
 
 dependencies {
+	api platform(project(":shared:platform"))
+	api platform("org.springframework.cloud:spring-cloud-dependencies")
+
 	implementation 'org.springframework.boot:spring-boot-starter-oauth2-resource-server'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+
+	implementation(project(":shared:users-proto"))
+
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
+
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 

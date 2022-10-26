@@ -2,24 +2,6 @@ import org.gradle.api.tasks.testing.logging.TestExceptionFormat
 import org.gradle.api.tasks.testing.logging.TestLogEvent
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
-plugins {
-	kotlin("jvm") version "1.6.21"
-	id("org.springframework.boot") version "2.7.4"
-	id("io.spring.dependency-management") version "1.0.14.RELEASE"
-	id("com.google.protobuf") version "0.8.19" apply false
-}
-
-repositories {
-	mavenCentral()
-}
-
-dependencies {
-	implementation("org.springframework.boot:spring-boot-starter")
-	implementation("org.jetbrains.kotlin:kotlin-reflect")
-	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-	testImplementation("org.springframework.boot:spring-boot-starter-test")
-}
-
 buildscript {
 	repositories {
 		gradlePluginPortal()
@@ -31,8 +13,19 @@ buildscript {
 	}
 	extra.apply {
 		set("protobufVersion", "3.19.1")
-		set("grpcVersion", "1.46.0")
+		set("grpcVersion", "1.50.0")
 	}
+}
+
+plugins {
+	kotlin("jvm") version "1.7.20"
+	id("org.springframework.boot") version "2.7.5"
+	id("io.spring.dependency-management") version "1.1.0"
+	id("com.google.protobuf") version "0.9.1" apply false
+}
+
+dependencies {
+	platform(project(":shared:platform"))
 }
 
 subprojects {
@@ -49,7 +42,7 @@ subprojects {
 
 	tasks {
 		withType<JavaCompile> {
-			options.compilerArgs.add("-Xlint:all,-serial,-processing")
+			options.compilerArgs.add("-Xlint:all")
 		}
 
 		withType<KotlinCompile> {

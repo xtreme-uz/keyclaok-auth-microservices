@@ -1,5 +1,8 @@
 rootProject.name = "keycloak-auth"
 
-include("gateway")
-include("user-provider")
+include(":shared:platform")
+include(":shared:users-proto")
+
+include(":keycloak:user-provider")
+
 include("users")

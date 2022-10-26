@@ -3,7 +3,6 @@ package uz.xtreme.userprovider;
 import java.util.Map;
 
 
-//TODO implement as gRPC client
 public class GrpcUserClient {
 
     Map<String, User> users = Map.of(

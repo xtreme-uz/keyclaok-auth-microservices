@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+option java_package = "uz.xtreme.users.proto";
+
+import "user.proto";
+
+message UsernameRequest {
+  string username = 1;
+}
+
+message PasswordVerifyRequest {
+  string username = 1;
+  string password = 2;
+}
+
+message PasswordVerifyResponse {
+  bool verified = 1;
+}
+
+service UsersService {
+  rpc GetUserByUsername(UsernameRequest) returns (User) {}
+  rpc VerifyUserPassword(PasswordVerifyRequest) returns (PasswordVerifyResponse) {}
+}

@@ -1,0 +1,30 @@
+plugins {
+	id 'java'
+	id 'java-library'
+}
+
+group = 'uz.xtreme'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+targetCompatibility = '11'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	api platform(project(":shared:platform"))
+
+	compileOnly 'org.keycloak:keycloak-core'
+	compileOnly 'org.keycloak:keycloak-server-spi'
+	compileOnly 'org.keycloak:keycloak-server-spi-private'
+	compileOnly 'org.keycloak:keycloak-services'
+	compileOnly 'org.keycloak:keycloak-model-legacy'
+
+	compileOnly 'io.grpc:grpc-netty-shaded'
+	compileOnly 'io.grpc:grpc-protobuf'
+	compileOnly 'io.grpc:grpc-stub'
+
+	compileOnly 'org.projectlombok:lombok:1.18.24'
+	annotationProcessor 'org.projectlombok:lombok:1.18.24'
+}
